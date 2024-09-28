@@ -94,6 +94,11 @@ class MapboxNavigationView(private val context: ThemedReactContext): FrameLayout
   private var waypoints: List<Point> = listOf()
   private var distanceUnit: String = DirectionsCriteria.IMPERIAL
   private var locale = Locale.getDefault()
+  private var vehicleHeight: Double? = null
+  private var vehicleWeight: Double? = null
+  private var vehicleWidth: Double? = null
+  private var vehicleLength: Double? = null
+
 
   /**
    * Bindings to the example layout.
@@ -659,34 +664,44 @@ class MapboxNavigationView(private val context: ThemedReactContext): FrameLayout
   }
 
   private fun findRoute(coordinates: List<Point>) {
-    mapboxNavigation?.requestRoutes(
-      RouteOptions.builder()
+    val routeOptionsBuilder = RouteOptions.builder()
         .applyDefaultNavigationOptions()
         .applyLanguageAndVoiceUnitOptions(context)
-        .coordinatesList(coordinates)
-        .language(locale.language)
-        .steps(true)
-        .voiceInstructions(true)
-        .voiceUnits(distanceUnit)
-        .build(),
-      object : NavigationRouterCallback {
-        override fun onCanceled(routeOptions: RouteOptions, @RouterOrigin routerOrigin: String) {
-          // no implementation
-        }
+        .coordinatesList(coordinates) // Lista koordinata (origin, destination, waypoints)
+        .language(locale.language) // Jezik za upute
+        .steps(true) // Dodaj korake za navigaciju
+        .voiceInstructions(true) // Omogući glasovne upute
+        .voiceUnits(distanceUnit) // Jedinice (imperijalne ili metričke)
 
-        override fun onFailure(reasons: List<RouterFailure>, routeOptions: RouteOptions) {
-          sendErrorToReact("Error finding route $reasons")
-        }
+        vehicleHeight?.let { routeOptionsBuilder.vehicleHeight(it) } // Postavi visinu vozila ako je postavljena
+        vehicleWeight?.let { routeOptionsBuilder.vehicleWeight(it) } // Postavi težinu vozila ako je postavljena
+        vehicleWidth?.let { routeOptionsBuilder.vehicleWidth(it) } // Postavi širinu vozila ako je postavljena
+        vehicleLength?.let { routeOptionsBuilder.vehicleLength(it) } // Postavi dužinu vozila ako je postavljena
 
-        override fun onRoutesReady(
-          routes: List<NavigationRoute>,
-          @RouterOrigin routerOrigin: String
-        ) {
-          setRouteAndStartNavigation(routes)
+
+    mapboxNavigation?.requestRoutes(
+        routeOptionsBuilder.build(),
+        object : NavigationRouterCallback {
+            override fun onCanceled(routeOptions: RouteOptions, @RouterOrigin routerOrigin: String) {
+                // Nema implementacije za otkazivanje zahteva
+            }
+
+            override fun onFailure(reasons: List<RouterFailure>, routeOptions: RouteOptions) {
+                // Šalje grešku nazad u React Native
+                sendErrorToReact("Error finding route $reasons")
+            }
+
+            override fun onRoutesReady(
+                routes: List<NavigationRoute>,
+                @RouterOrigin routerOrigin: String
+            ) {
+                // Kada je ruta spremna, započni navigaciju
+                setRouteAndStartNavigation(routes)
+            }
         }
-      }
     )
-  }
+}
+
 
   @SuppressLint("MissingPermission")
   private fun setRouteAndStartNavigation(routes: List<NavigationRoute>) {
@@ -784,6 +799,22 @@ class MapboxNavigationView(private val context: ThemedReactContext): FrameLayout
 
   fun setMute(mute: Boolean) {
     this.isVoiceInstructionsMuted = mute
+  }
+
+  fun setVehicleHeight(height: Double) {
+    this.vehicleHeight = height
+  }
+
+  fun setVehicleWeight(weight: Double) {
+      this.vehicleWeight = weight
+  }
+
+  fun setVehicleWidth(width: Double) {
+      this.vehicleWidth = width
+  }
+
+  fun setVehicleLength(length: Double) {
+      this.vehicleLength = length
   }
 
   fun setShowCancelButton(show: Boolean) {

@@ -94,6 +94,26 @@ class MapboxNavigationViewManager(private var reactContext: ReactApplicationCont
     view?.setMute(value)
   }
 
+  @ReactProp(name = "vehicleHeight")
+  fun setVehicleHeight(view: MapboxNavigationView?, value: Double) {
+    view?.setVehicleHeight(value)
+  }
+
+  @ReactProp(name = "vehicleWeight")
+  fun setVehicleWeight(view: MapboxNavigationView?, value: Double) {
+    view?.setVehicleWeight(value)
+  }
+
+  @ReactProp(name = "vehicleWidth")
+  fun setVehicleWidth(view: MapboxNavigationView?, value: Double) {
+    view?.setVehicleWidth(value)
+  }
+
+  @ReactProp(name = "vehicleLength")
+  fun setVehicleLength(view: MapboxNavigationView?, value: Double) {
+    view?.setVehicleLength(value)
+  }
+
   companion object {
     const val NAME = "MapboxNavigationView"
   }
