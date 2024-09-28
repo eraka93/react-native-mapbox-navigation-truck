@@ -18,6 +18,10 @@ interface NativeProps extends ViewProps {
   shouldSimulateRoute?: boolean;
   showsEndOfRouteFeedback?: boolean;
   hideStatusView?: boolean;
+  vehicleHeight?: Double;
+  vehicleWeight?: Double;
+  vehicleWidth?: Double;
+  vehicleLength?: Double;
 }
 
 export default codegenNativeComponent<NativeProps>(

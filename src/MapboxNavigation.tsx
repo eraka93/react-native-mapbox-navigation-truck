@@ -104,6 +104,10 @@ class MapboxNavigation extends React.Component<
       onLocationChange,
       onRouteProgressChange,
       onError,
+      vehicleHeight,
+      vehicleWieight,
+      vehicleWidth,
+      vehicleLength,
       ...rest
     } = this.props;
 
@@ -115,6 +119,10 @@ class MapboxNavigation extends React.Component<
           startOrigin={[startOrigin.longitude, startOrigin.latitude]}
           destinationTitle={destination.title}
           destination={[destination.longitude, destination.latitude]}
+          vehicleHeight={vehicleHeight}  // Dodaj visinu vozila
+          vehicleWeight={vehicleWeight}  // Dodaj težinu vozila
+          vehicleWidth={vehicleWidth}    // Dodaj širinu vozila
+          vehicleLength={vehicleLength}  // Dodaj dužinu vozila
           onLocationChange={(event) => onLocationChange?.(event.nativeEvent)}
           onRouteProgressChange={(event) =>
             onRouteProgressChange?.(event.nativeEvent)

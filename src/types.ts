@@ -41,6 +41,11 @@ export interface MapboxNavigationProps {
   style?: StyleProp<ViewStyle>;
   mute?: boolean;
   showCancelButton?: boolean;
+
+  vehicleHeight?: number;  // Dodaj prop za visinu vozila
+  vehicleWeight?: number;  // Dodaj prop za težinu vozila
+  vehicleWidth?: number;   // Dodaj prop za širinu vozila
+  vehicleLength?: number;  // Dodaj prop za dužinu vozila
   startOrigin: Coordinate;
   waypoints?: Coordinate[];
   separateLegs?: boolean;
