@@ -1,6 +1,6 @@
 {
-  "name": "@pawan-pk/react-native-mapbox-navigation",
-  "version": "0.4.3",
+  "name": "@eraka93/react-native-mapbox-navigation-truck",
+  "version": "1.0.0",
   "description": "Mapbox React Native SDKs enable interactive maps and real-time, traffic-aware turn-by-turn navigation, dynamically adjusting routes to avoid congestion.",
   "source": "./src/index.tsx",
   "main": "./lib/commonjs/index.cjs",
@@ -50,18 +50,21 @@
     "carplay",
     "navigation",
     "react-native-mapbox-navigation",
-    "carplay-mapbox-navigation"
+    "truck-navigation",
+    "vehicle-dimensions",
+    "height",
+    "weight"
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/pawan-pk/react-native-mapbox-navigation.git"
+    "url": "git+https://github.com/eraka93/react-native-mapbox-navigation-truck.git"
   },
-  "author": "Pawan Kumar Kushwaha <pkk4499@gmail.com> (https://github.com/pawan-pk)",
+  "author": "Milan Erakovic <eraka.milan@gmail.com> (https://github.com/eraka93)",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/pawan-pk/react-native-mapbox-navigation/issues"
+    "url": "https://github.com/eraka93/react-native-mapbox-navigation-truck/issues"
   },
-  "homepage": "https://github.com/pawan-pk/react-native-mapbox-navigation#readme",
+  "homepage": "https://github.com/eraka93/react-native-mapbox-navigation-truck#readme",
   "publishConfig": {
     "registry": "https://registry.npmjs.org/"
   },

@@ -1,15 +1,27 @@
-# @pawan-pk/react-native-mapbox-navigation <br/>[![npm](https://img.shields.io/npm/v/%40pawan-pk%2Freact-native-mapbox-navigation)](https://www.npmjs.com/package/@pawan-pk/react-native-mapbox-navigation) [![Build status](https://img.shields.io/github/actions/workflow/status/pawan-pk/react-native-mapbox-navigation/ci.yml?branch=main&label=tests)](https://github.com/pawan-pk/react-native-mapbox-navigation/actions) [![npm](https://img.shields.io/npm/dw/%40pawan-pk%2Freact-native-mapbox-navigation)](https://www.npmjs.com/package/@pawan-pk/react-native-mapbox-navigation)
+# @eraka93/react-native-mapbox-navigation-truck <br/>[![npm](https://img.shields.io/npm/v/%40eraka93%2Freact-native-mapbox-navigation-truck)](https://www.npmjs.com/package/@eraka93/react-native-mapbox-navigation-truck) [![Build status](https://img.shields.io/github/actions/workflow/status/eraka93/react-native-mapbox-navigation-truck/ci.yml?branch=main&label=tests)](https://github.com/eraka93/react-native-mapbox-navigation-truck/actions) [![npm](https://img.shields.io/npm/dw/%40eraka93%2Freact-native-mapbox-navigation-truck)](https://www.npmjs.com/package/@eraka93/react-native-mapbox-navigation-truck)
 
-Mapbox React Native SDKs enable interactive maps and real-time, traffic-aware turn-by-turn navigation, dynamically adjusting routes to avoid congestion.
+Mapbox React Native SDKs enable interactive maps and real-time, traffic-aware turn-by-turn navigation, dynamically adjusting routes to avoid congestion. This version adds truck-specific navigation features.
 
 🆕&nbsp; Uses Mapbox navigation v3 SDK<br>
 📱&nbsp; Supports iOS, Android<br>
 🌍&nbsp; Various languages<br>
 🎨&nbsp; Customizable<br>
 ⛕&nbsp; Multiple Waypoints<br>
-🚘&nbsp; iOS CarPlay Support
+🚘&nbsp; iOS CarPlay Support<br>
+🚚&nbsp; Truck-specific navigation options (height, weight, width, length)
 
-<a href="https://www.buymeacoffee.com/pawan_kumar" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" alt="Buy Me A Coffee" style="height: 60px !important;width: 217px !important;" ></a>
+<a href="https://www.buymeacoffee.com/eraka93" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" alt="Buy Me A Coffee" style="height: 60px !important;width: 217px !important;" ></a>
+
+## Truck Navigation Options Added
+
+This package has been extended by [Milan Erakovic](https://github.com/eraka93) to include options for truck navigation, such as vehicle height, weight, width, and length. These options are useful for calculating routes that consider vehicle dimensions and restrictions on roads.
+
+The extended features include:
+
+- `vehicleHeight`: The height of the truck in meters.
+- `vehicleWeight`: The weight of the truck in tons.
+- `vehicleWidth`: The width of the truck in meters.
+- `vehicleLength`: The length of the truck in meters.
 
 ## Route View
 
@@ -43,11 +55,10 @@ Mapbox React Native SDKs enable interactive maps and real-time, traffic-aware tu
 
 ```sh
 # yarn
-yarn add @pawan-pk/react-native-mapbox-navigation
+yarn add @eraka93/react-native-mapbox-navigation-truck
 
 # npm
-npm install @pawan-pk/react-native-mapbox-navigation
-```
+npm install @eraka93/react-native-mapbox-navigation-truck
 
 ## iOS Specific Instructions
 
@@ -122,7 +133,7 @@ npm install @pawan-pk/react-native-mapbox-navigation
 ## Usage
 
 ```js
-import MapboxNavigation from '@pawan-pk/react-native-mapbox-navigation';
+import MapboxNavigation from '@eraka93/react-native-mapbox-navigation-truck';
 import { StyleSheet } from 'react-native';
 
 export default function App() {
@@ -134,6 +145,10 @@ export default function App() {
         { latitude: 30.726848, longitude: 76.733758 },
         { latitude: 30.738819, longitude: 76.757902 },
       ]}
+      vehicleHeight={4.0}
+      vehicleWeight={20.0}
+      vehicleWidth={2.5}
+      vehicleLength={12.0}
       style={styles.container}
       shouldSimulateRoute={false}
       showCancelButton={false}
@@ -147,6 +162,7 @@ const styles = StyleSheet.create({
     flex: 1,
   },
 });
+
 ```
 
 ## `MapboxNavigation` Props
@@ -158,6 +174,14 @@ const styles = StyleSheet.create({
 - `waypoints` (array): The waypoints for navigation points between startOrigin and destination. Should contains array of latitude and longitude keys.
 
 - `style` (StyleObject): Custom styles for the navigation mapview.
+
+- `vehicleHeight` (number): The height of the truck in meters.
+
+- `vehicleWeight` (number): The weight of the truck in tons.
+
+- `vehicleWidth` (number): The width of the truck in meters.
+
+- `vehicleLength` (number): The length of the truck in meters.
 
 - `shouldSimulateRoute` (boolean): [iOS Only] If true, simulates the route for testing purposes. Defaults to `false`.
 
